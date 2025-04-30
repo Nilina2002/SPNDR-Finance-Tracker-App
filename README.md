@@ -16,6 +16,7 @@ Features include sound effects, smooth animations, customizable currencies, and 
 
 - 📥 **Transaction Management** — Add, edit, delete transactions easily
 - 📊 **Category-wise Analysis** — Understand where your money goes
+- 🔏 **Pin-Authentication** - Set up a pin for more secure user experience
 - 🎯 **Monthly Budget Setup** — Set spending limits and stay in control
 - 💾 **Data Persistence** — Using `SharedPreferences`
 - 📢 **Sound Effects** — Audio feedback on transaction creation
