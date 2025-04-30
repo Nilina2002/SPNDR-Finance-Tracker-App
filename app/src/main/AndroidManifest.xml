@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Spndr3"
         tools:targetApi="35">
         <activity
+            android:name=".VerifyPinActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PinActivity"
+            android:exported="false" />
+        <activity
             android:name=".OnBoard2"
             android:exported="false" />
         <activity
@@ -41,6 +47,9 @@
         </activity>
         <activity
             android:name=".AddTransactionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditTransactionActivity"
             android:exported="false" />
     </application>
 

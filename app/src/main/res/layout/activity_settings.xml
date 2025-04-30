@@ -224,7 +224,7 @@
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Created with 🖤 - Nilina Nilaksha"
+                android:text="Coded with 🖤 - Nilina Nilaksha"
                 android:textColor="@color/material_dynamic_neutral_variant60"
                 android:textAlignment="center"
                 android:layout_marginTop="40dp"/>

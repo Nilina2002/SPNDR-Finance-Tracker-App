@@ -32,4 +32,12 @@
     <string name="about_us">About Us</string>
     <string name="currency">Currency</string>
     <string name="select_currency">Select Currency</string>
+    <string name="create_pin">Create Your PIN</string>
+    <string name="pin_subtitle">Set a 4-digit PIN to secure your financial data</string>
+    <string name="enter_pin">Enter PIN</string>
+    <string name="enter_your_pin">Enter Your PIN</string>
+    <string name="verify_pin_subtitle">Please enter your PIN to access the app</string>
+    <string name="verify">Verify</string>
+    <string name="incorrect_pin">Incorrect PIN. Please try again.</string>
+    <string name="update_transaction">Update Transaction</string>
 </resources>

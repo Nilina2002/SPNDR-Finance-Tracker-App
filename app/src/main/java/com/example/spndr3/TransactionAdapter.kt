@@ -1,6 +1,7 @@
 package com.example.spndr3
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
@@ -26,14 +27,6 @@ class TransactionAdapter(private var transactions: List<Transaction>) : Recycler
         return TransactionViewHolder(view)
     }
 
-//    override fun onBindViewHolder(holder: TransactionViewHolder, position: Int) {
-//        val transaction = transactions[position]
-//        holder.label.text = transaction.label
-//
-//        val currency = sharedPreferences.getString(CURRENCY_PREF_KEY, DEFAULT_CURRENCY)
-//        holder.amount.text = "$currency ${transaction.amount}"
-//    }
-
     override fun onBindViewHolder(holder: TransactionViewHolder, position: Int) {
         val transaction = transactions[position]
         holder.label.text = transaction.label
@@ -47,6 +40,13 @@ class TransactionAdapter(private var transactions: List<Transaction>) : Recycler
             holder.amount.setTextColor(ContextCompat.getColor(context, R.color.red))
         } else {
             holder.amount.setTextColor(ContextCompat.getColor(context, R.color.green))
+        }
+
+        // Set click listener
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, EditTransactionActivity::class.java)
+            intent.putExtra("transaction_id", transaction.id)
+            context.startActivity(intent)
         }
     }
 

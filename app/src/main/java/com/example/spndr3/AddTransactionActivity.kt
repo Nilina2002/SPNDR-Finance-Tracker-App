@@ -61,20 +61,25 @@ class AddTransactionActivity : AppCompatActivity() {
 
 
         addTransactionBtn.setOnClickListener {
-            val label = labelInput.text.toString()
-            val amount = amountInput.text.toString().toDoubleOrNull()
-            val category = categoryInput.text.toString()
-            val date = dateInput.text.toString()
+            try {
+                val label = labelInput.text.toString()
+                val amount = amountInput.text.toString().toDoubleOrNull()
+                val category = categoryInput.text.toString()
+                val date = dateInput.text.toString()
 
-            if(label.isEmpty())
-                labelLayout.error = "Please enter a valid label"
+                if(label.isEmpty())
+                    labelLayout.error = "Please enter a valid label"
 
-            else if(amount == null)
-                amountLayout.error = "Please enter a valid amount"
+                else if(amount == null)
+                    amountLayout.error = "Please enter a valid amount"
 
-            else {
-                val transaction = Transaction(label ,amount ,0 , category, date)
-                insert(transaction)
+                else {
+                    val transaction = Transaction(label ,amount ,0 , category, date)
+                    insert(transaction)
+                }
+            } catch (e: Exception) {
+                // Handle any unexpected errors
+                android.widget.Toast.makeText(this, "An error occurred: ${e.message}", android.widget.Toast.LENGTH_SHORT).show()
             }
 
             closeBtn.setOnClickListener {
@@ -101,23 +106,40 @@ class AddTransactionActivity : AppCompatActivity() {
 
     }
     private fun insert(transaction: Transaction) {
-        val db = Room.databaseBuilder(this, AppDatabase::class.java, "transactions").build()
+        try {
+            val db = Room.databaseBuilder(this, AppDatabase::class.java, "transactions").build()
 
-        GlobalScope.launch {
-            db.transactionDao().insertAll(transaction)
+            GlobalScope.launch {
+                try {
+                    db.transactionDao().insertAll(transaction)
 
-            // Back to main thread to play sound and finish activity
-            runOnUiThread {
-                val mediaPlayer = MediaPlayer.create(this@AddTransactionActivity, R.raw.success_sound)
-                mediaPlayer.start()
-
-                // Optional: release the media player after playback
-                mediaPlayer.setOnCompletionListener {
-                    it.release()
+                    // Back to main thread to play sound and finish activity
+                    runOnUiThread {
+                        try {
+                            val mediaPlayer = MediaPlayer.create(this@AddTransactionActivity, R.raw.success_sound)
+                            if (mediaPlayer != null) {
+                                mediaPlayer.start()
+                                // Optional: release the media player after playback3
+                                mediaPlayer.setOnCompletionListener {
+                                    it.release()
+                                }
+                            } else {
+                                android.widget.Toast.makeText(this@AddTransactionActivity, "Added Successfully", android.widget.Toast.LENGTH_SHORT).show()
+                            }
+                            finish()
+                        } catch (e: Exception) {
+                            android.widget.Toast.makeText(this@AddTransactionActivity, "Error playing sound: ${e.message}", android.widget.Toast.LENGTH_SHORT).show()
+                            finish()
+                        }
+                    }
+                } catch (e: Exception) {
+                    runOnUiThread {
+                        android.widget.Toast.makeText(this@AddTransactionActivity, "Error saving transaction: ${e.message}", android.widget.Toast.LENGTH_SHORT).show()
+                    }
                 }
-
-                finish()
             }
+        } catch (e: Exception) {
+            android.widget.Toast.makeText(this, "Database error: ${e.message}", android.widget.Toast.LENGTH_SHORT).show()
         }
     }
 }

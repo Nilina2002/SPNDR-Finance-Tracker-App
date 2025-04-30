@@ -1,32 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/statisticsRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
     android:background="@color/white">
 
-    <ImageView
-        android:id="@+id/logoImage"
-        android:layout_width="83dp"
-        android:layout_height="79dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/applogo"
-        android:src="@drawable/logo1" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/statisticsTitle"
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:contentDescription="Back to Main"
+            android:padding="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+
+    </RelativeLayout>
+
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Monthly Report"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center" />
+        android:layout_margin="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/logoImage"
+                android:layout_width="83dp"
+                android:layout_height="79dp"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@string/applogo"
+                android:src="@drawable/logo1" />
+
+            <TextView
+                android:id="@+id/statisticsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Monthly Report"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/statisticsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:clipToPadding="false" />
+
 </LinearLayout>

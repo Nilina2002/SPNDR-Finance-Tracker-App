@@ -48,7 +48,7 @@ class OnBoard2 : AppCompatActivity() {
         }
 
         continueButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, PinActivity::class.java)
             startActivity(intent)
             finish()
         }
